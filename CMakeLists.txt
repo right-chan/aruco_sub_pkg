@@ -1,0 +1,27 @@
+cmake_minimum_required(VERSION 3.0.2)
+project(aruco_sub_pkg)
+
+find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  # std_msgs
+  # geometry_msgs
+  fiducial_msgs
+)
+
+catkin_package(
+#  INCLUDE_DIRS include
+#  LIBRARIES aruco_sub_pkg
+#  CATKIN_DEPENDS roscpp std_msgs
+#  DEPENDS system_lib
+)
+
+include_directories(
+# include
+  ${catkin_INCLUDE_DIRS}
+)
+
+add_executable(aruco_sub_node src/ar_sub_node.cpp)
+add_dependencies(aruco_sub_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(aruco_sub_node
+  ${catkin_LIBRARIES}
+)
